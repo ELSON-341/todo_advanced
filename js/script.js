@@ -4,7 +4,9 @@ const todoForm = document.querySelector('#todo-form')
 const todoInput = document.querySelector('#todo-input')
 const todoList = document.querySelector('#todo-list')
 const editForm = document.querySelector('#edit-form')
+console.log(editForm);
 const editInput = document.querySelector('#edit-input')
+const editBtn = document.querySelector('#edit-btn')
 const cancelEditBtn = document.querySelector('#cancel-edit-btn')
 
 let oldInputValue
@@ -50,8 +52,9 @@ function updateTodo(text) {
 
     todos.forEach((todo) => {
         let todoTitle = todo.querySelector('h3') 
+        console.log(todoTitle, text);
 
-        if(todoTitle.innerTextm === oldInputValue) {
+        if(todoTitle.innerText === oldInputValue) {
             todoTitle.innerText = text
         }
     })
@@ -66,6 +69,7 @@ todoForm.addEventListener('submit', (e) => {
         saveTodo(inputValue)
     }
 })
+
 document.addEventListener('click', (e) => {
     const targetEl = e.target
     const parentEl = e.target.closest('div')
@@ -76,7 +80,6 @@ document.addEventListener('click', (e) => {
     }
     
     if(targetEl.classList.contains('finish-todo')){
-        console.log('Clicou para finalizar')
         parentEl.classList.toggle('done')
     }
 
@@ -99,10 +102,11 @@ cancelEditBtn.addEventListener('click', (e) => {
     toggleForms()
 })
 
-editForm.addEventListener('submit', (e) => {
+editBtn.addEventListener('click', (e) => {
     e.preventDefault()
 
     const editInputValue = editInput.value
+    console.log('tess');
     
     if(editInputValue) {
         updateTodo(editInputValue)
