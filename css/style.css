@@ -9,6 +9,10 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100vh;
+}
+
 body {
     background-image: url('../img/custom-img.svg');
     background-position: center center;

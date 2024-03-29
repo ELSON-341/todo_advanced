@@ -5,8 +5,12 @@ const todoInput = document.querySelector('#todo-input')
 const todoList = document.querySelector('#todo-list')
 const editForm = document.querySelector('#edit-form')
 const editInput = document.querySelector('#edit-input')
-const editBtn = document.querySelector('#edit-btn')
 const cancelEditBtn = document.querySelector('#cancel-edit-btn')
+const editBtn = document.querySelector('#edit-btn')
+
+const searchInput = document.querySelector('#search-input')
+const eraseBtn = document.querySelector('#arase-btn')
+
 
 let oldInputValue
 
@@ -40,13 +44,13 @@ const saveTodo = (text) => {
     todoInput.focus()
 }
 
-function toggleForms() {
+const toggleForms = () => {
     editForm.classList.toggle('hide')
     todoForm.classList.toggle('hide')
     todoList.classList.toggle('hide')
 }
 
-function updateTodo(text) {
+const updateTodo = (text) => {
     const todos = document.querySelectorAll('.todo')
 
     todos.forEach((todo) => {
@@ -55,6 +59,21 @@ function updateTodo(text) {
 
         if(todoTitle.innerText === oldInputValue) {
             todoTitle.innerText = text
+        }
+    })
+}
+
+const getSearchTodo = (search) => {
+    const todos = document.querySelectorAll('.todo')
+
+    todos.forEach((todo) => {
+        const todoTitle = todo.querySelector('h3').innerText.toLowerCase()
+        const normalizedSearch = search.toLowerCase()
+        
+        todo.style.display = 'flex'
+
+        if(!todoTitle.includes(normalizedSearch)){
+            todo.style.display = 'none'
         }
     })
 }
@@ -68,6 +87,7 @@ todoForm.addEventListener('submit', (e) => {
         saveTodo(inputValue)
     } else {
         alert('Por favor, digite algo...')
+        return
     }
 })
 
@@ -115,4 +135,18 @@ editBtn.addEventListener('click', (e) => {
     }
 
     toggleForms()
+})
+
+searchInput.addEventListener('keyup', (e) => {
+    e.preventDefault()
+
+    const search = e.target.value
+    getSearchTodo(search)
 }) 
+eraseBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    searchInput.value = ''
+
+    searchInput.dispatchEvent(new Event('keyup'))
+})
