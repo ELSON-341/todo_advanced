@@ -11,6 +11,7 @@ const editBtn = document.querySelector('#edit-btn')
 const searchInput = document.querySelector('#search-input')
 const eraseBtn = document.querySelector('#arase-btn')
 
+const todoFilter = document.querySelector('#todo-filter')
 
 let oldInputValue
 
@@ -76,6 +77,24 @@ const getSearchTodo = (search) => {
             todo.style.display = 'none'
         }
     })
+}
+
+const filterTodos = (filterValue) => {
+    const todos = document.querySelectorAll('.todo')
+
+    switch(filterValue) {
+        case 'all':
+            todos.forEach((todo) => todo.style.display = 'flex')
+            break
+        
+        case 'done':
+            todos.forEach((todo) => todo.classList.contains('done') ? todo.style.display = 'flex' : todo.style.display = 'none')
+            break
+
+        case 'todo':
+            todos.forEach((todo) => !todo.classList.contains('done') ? todo.style.display = 'flex' : todo.style.display = 'none')
+    }
+
 }
 
 // Eventos
@@ -149,4 +168,11 @@ eraseBtn.addEventListener('click', (e) => {
     searchInput.value = ''
 
     searchInput.dispatchEvent(new Event('keyup'))
+})
+
+todoFilter.addEventListener('change', (e) => {
+    const filterValue = e.target.value
+    
+    console.log(filterValue);
+    filterTodos(filterValue)
 })
