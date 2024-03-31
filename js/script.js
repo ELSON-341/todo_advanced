@@ -16,7 +16,7 @@ const todoFilter = document.querySelector('#todo-filter')
 let oldInputValue
 
 // Funções 
-const saveTodo = (text) => {
+const saveTodo = (text, done = 0, save = 1) => {
     const todo = document.createElement('div')
     todo.classList.add('todo')
 
@@ -39,6 +39,16 @@ const saveTodo = (text) => {
     deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
     todo.appendChild(deleteBtn)
 
+    // Utilizando dados da Local storage
+    if(done) {
+        todo.classList.add('done')
+    }
+
+    if(save) {
+        saveTodosStorage({text, done})
+    }
+    
+    
     todoList.appendChild(todo)
 
     todoInput.value = ''
@@ -176,3 +186,18 @@ todoFilter.addEventListener('change', (e) => {
     console.log(filterValue);
     filterTodos(filterValue)
 })
+
+// local storage
+const getTodosLocalStorage = () => {
+    const todos = JSON.parse(localStorage.getItem('todos')) || []
+
+    return todos
+}
+
+const saveTodosStorage = (todo) => {
+    const todos = getTodosLocalStorage()
+
+    todos.push(todo)
+
+    localStorage.setItem('todos', JSON.stringify(todos))
+}
