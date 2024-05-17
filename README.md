@@ -1,5 +1,7 @@
 # Lista de tarefas
 
+Desenvolvido: HTML, CSS, JavaScript
+
 Este projeto é uma lista de tarefas onde o usuário pode:
 
 1. Adicionar novas tarefas
