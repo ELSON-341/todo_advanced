@@ -16,7 +16,7 @@ Todas essas ações são sincronizadas simultaneamente no local storage. Outras 
 
 * Buscar tarefas por palavras-chave
 
-_**Está responsivo para dotos os dispositivos.**_
+_**Está responsivo para dotos os dispositivos**_ 📱💻
 
 ## Preview
 clique [aqui](https://elson-341.github.io/todo_advanced/) para acessar o site.
