@@ -134,6 +134,12 @@ input, select {
 }
 
 /* Todo List */
+#todo-list {
+    max-height: 265px;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-color: #102f5e #eeeaee;
+}
 .todo {
     display: flex;
     justify-content: space-between;
